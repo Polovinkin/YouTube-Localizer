@@ -30,12 +30,11 @@
         </div>
         <div class="local-status{% if youtube_quota_exceeded %} is-limited{% endif %}"
              title="The app runs on this computer. Video metadata is sent to the selected translation provider and YouTube.">
-            <span class="status-dot" aria-hidden="true"></span>
             <span>
                 {% if youtube_quota_exceeded %}
                     Limited mode · YouTube paused
                 {% else %}
-                    Local app · cloud translation
+                    Local app & Cloud translation
                 {% endif %}
             </span>
         </div>
@@ -189,6 +188,7 @@
                         <div class="provider-control">
                             <div class="provider-control-heading">
                                 <div class="provider-control-label" id="provider-panel-title">Translation providers</div>
+                                <small id="providerStatus"></small>
                             </div>
                             <div class="provider-switch" role="radiogroup"
                                 aria-label="Translation provider">
@@ -209,7 +209,6 @@
                                     </span>
                                 </label>
                             </div>
-                            <small id="providerStatus"></small>
                             <div class="provider-actions">
                                 <button id="usageProvidersBtn" class="provider-tool-button" type="button"
                                         aria-label="Show translation usage and YouTube quota">
@@ -266,7 +265,10 @@
                         </label>
                         {% endif %}
                     </div>
-                    <span class="localization-heading">Localizations</span>
+                    <span class="localization-heading">
+                        <span># of</span>
+                        <span>Localizations</span>
+                    </span>
                 </div>
 
                 <p class="video-list-hint">Click a title or description to select a video; use its language count to view localizations.</p>
@@ -1635,7 +1637,7 @@
                     && positiveSkipReasons.length === 1
                     && positiveSkipReasons[0][0] === 'already_localized'
                     ? 'All selected localizations were already published.'
-                    : 'Review the skipped and failed items below.'
+                    : 'Review the skipped or failed items below.'
             );
             errorPopUpContent.innerText = '';
             return;

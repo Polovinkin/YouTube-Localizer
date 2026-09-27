@@ -276,16 +276,16 @@ class LocalizationService:
             translated_description = provider.translate_text(
                 video.description, language_code, source_language_code
             )
-        except TranslationError as exc:
+        except MonthlyTranslationLimitError as exc:
             print(
                 f"│  ✗ {language}: {provider.name} error — {exc}; skipped"
             )
-            reason = (
-                "google_monthly_limit"
-                if isinstance(exc, MonthlyTranslationLimitError)
-                else "translation_error"
+            return None, "skipped", "google_monthly_limit"
+        except TranslationError as exc:
+            print(
+                f"│  ✗ {language}: {provider.name} error — {exc}; failed"
             )
-            return None, "failed", reason
+            return None, "failed", "translation_error"
 
         print(f"│  ✓ {language}: translated with {provider.name}")
         return (

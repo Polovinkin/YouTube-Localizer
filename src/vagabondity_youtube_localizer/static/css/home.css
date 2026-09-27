@@ -1012,9 +1012,11 @@ a {
 #providerStatus {
     display: block;
     overflow: hidden;
-    margin-top: 6px;
+    min-width: 0;
+    margin-left: auto;
     color: var(--muted);
     font-size: 0.62rem;
+    text-align: right;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -1200,12 +1202,22 @@ a.top-page-btn:focus-visible {
 }
 
 .localization-heading {
-    padding-right: 8px;
+    display: flex;
+    width: 42px;
+    flex: 0 0 42px;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 1px;
+    margin-right: 4px;
     color: var(--muted);
     font-size: 0.72rem;
     font-weight: 650;
+    line-height: 1.05;
+    text-align: right;
     text-transform: uppercase;
     letter-spacing: 0.07em;
+    transform: translateY(24px);
+    white-space: nowrap;
 }
 
 .video-list-hint {
